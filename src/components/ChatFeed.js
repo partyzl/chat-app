@@ -2,7 +2,6 @@ import React from "react";
 import MyMessage from "./MyMessage";
 import MessageForm from "./MessageForm";
 import TheirMessage from "./TheirMessage";
-import { KeyObject } from "crypto";
 
 const ChatFeed = (props) => {
   const { chats, activeChat, userName, messages } = props;
@@ -14,14 +13,17 @@ const ChatFeed = (props) => {
 
     return keys.map((key, index) => {
       const msg = messages[key];
-      const lastMsgKey = index == 0 ? null : keys[index - 1];
+      const lastMsgKey = index === 0 ? null : keys[index - 1];
       const isMyMsg = userName === msg.sender.username;
 
       return (
         <div key={`msg_${index}`} style={{ width: "100%" }}>
           <div className="message-block">
-            isMyMsg ? <MyMessage msg={msg} />
-            : <TheirMessage msg={msg} lastMsg={messages[lastMsgKey]} />
+            {isMyMsg ? (
+              <MyMessage msg={msg} />
+            ) : (
+              <TheirMessage msg={msg} lastMsg={messages[lastMsgKey]} />
+            )}
           </div>
           <div
             className="read-receipts"
@@ -34,7 +36,6 @@ const ChatFeed = (props) => {
       );
     });
   };
-  renderMessages();
 
   if (!chat) return "Loading...";
   return (
@@ -42,7 +43,7 @@ const ChatFeed = (props) => {
       <div className="chat-title-container">
         <div className="chat-title">{chat.title}</div>
         <div className="chat-subtitle">
-          {chat.people.map((person) => `{person.person.username}`)}
+          {chat.people.map((person) => `${person.person.username}`)}
         </div>
       </div>
       {renderMessages()}
