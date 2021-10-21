@@ -5,7 +5,7 @@
 ## Access
 - 2 logins are as follows: 
 ```
-username: Parth Patel
+username: partyzl
 password: 123123
 
 username: friend
