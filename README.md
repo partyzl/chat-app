@@ -5,10 +5,10 @@
 ## Access
 - 2 logins are as follows: 
 ```
-username: partyzl
+username: test_user1
 password: 123123
 
-username: friend
+username: test_user2
 password: 123123
 ```
 
